@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
         future: UserDatabase().fetchUser(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(color: Colors.teal));
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
@@ -34,6 +34,7 @@ class Home extends StatelessWidget {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
+                      overflow: TextOverflow.fade,
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,14 +48,16 @@ class Home extends StatelessWidget {
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
                               ),
+                              overflow: TextOverflow.fade,
                             ),
                             SizedBox(width: 10),
                             Text(
-                              '${user.email}',
+                              user.email,
                               style: TextStyle(
                                 fontSize: 17,
                                 //fontWeight: FontWeight.bold,
                               ),
+                              overflow: TextOverflow.fade,
                             ),
                           ],
                         ),
@@ -70,7 +73,7 @@ class Home extends StatelessWidget {
                             ),
                             SizedBox(width: 10),
                             Text(
-                              '${user.company}',
+                              user.company,
                               style: TextStyle(
                                 fontSize: 17,
                                 //fontWeight: FontWeight.bold,
@@ -80,7 +83,6 @@ class Home extends StatelessWidget {
                         ),
                       ],
                     ),
-                    isThreeLine: true,
                   ),
                 );
               },
