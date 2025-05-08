@@ -19,7 +19,10 @@ class Home extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator(color: Colors.teal));
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+            return Padding(
+              padding: EdgeInsets.all(25),
+              child: Center(child: Text('Error: ${snapshot.error}')),
+            );
           } else if (snapshot.hasData) {
             final users = snapshot.data!;
             return ListView.builder(
